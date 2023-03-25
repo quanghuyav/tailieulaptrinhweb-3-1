@@ -1,7 +1,7 @@
 // import - export
 
-// Phân biệt SPA >< MPA
-// Phân biệt CSR >< SSR
+// Phân biệt SPA (single page application) react    ><  MPA (multi page application) ko sd react
+// Phân biệt CSR (client side renderring)           ><  SSR (server side renderring)
 // document.createElement()
 const h1 = document.createElement('h1')
 h1.className = "heading"
@@ -25,3 +25,7 @@ root.render(h1React) // render
 
 
 // Ngày trước React và ReactDOM nằm chung trong 1 thư viện, sau này khi ra đời react-native để code ứng dụng mobile thì tách ra
+
+
+
+// module: import - export

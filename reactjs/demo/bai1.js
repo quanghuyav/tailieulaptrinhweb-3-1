@@ -54,7 +54,6 @@ console.log(h1React)
 
 const container = document.querySelector('#root') // trỏ đến cái root
 const root = ReactDOM.createRoot(container)
-root = ReactDOM.createRoot(container)
 root.render(h1React)
 
 
