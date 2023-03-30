@@ -58,13 +58,13 @@ function sum(a,b,c){
 }
 sum(3,4,5)
 
-function Header({name, course, callback}){
+function Header({name="môn học chưa được nhập" , course=0, callback = ()=>{}}){
     callback()
     return <div>{name} có giá {course}</div>
 }
  // tương đương thẻ <div> đây là header </div>
 const reactElement = <div className = "content" title = "hello">
-    <Header className="content" callback ={()=>console.log(Math.random())} name= "Javascript" course={1000}></Header>
+    <Header className="content"  name="javascript"  ></Header>
 
 </div>
 console.log(reactElement)
