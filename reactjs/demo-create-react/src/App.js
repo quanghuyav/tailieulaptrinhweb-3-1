@@ -1,11 +1,15 @@
-import { useState } from "react";
+import Game from "./Game";
 import Header from "./Header";
-
+import { useState } from "react";
 function App() {
-  // const [state, setState] = useState(initstate) > [giá trị khởi tạo, func]
-  console.log("hello")
-  return (
-    <Header></Header>
+  const [toggle, setToggle] = useState(true)
+  return (<>
+  <button onClick={()=> setToggle(!toggle)}>Mount</button>
+  {
+    toggle && <Header></Header>
+  }
+    </>
+    // <Game></Game>
   );
 }
 

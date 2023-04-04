@@ -1,25 +1,31 @@
+import { useEffect } from "react";
 import { useState } from "react";
-function Header() {
-    var myArr = [100,200,300,400]
-  
-    const [sum, setSum] = useState(()=>{
-        var tong = 0
-        for (let i = 0; i <myArr.length;i++){
-        console.log("thực hiện việc tính tổng thứ ", i)
-        tong = tong + myArr[i]
-        }
-        return tong
-    })
-    console.log("hello header")
-    
-    function handleClick(){
-        setSum(sum+1)
-    } 
 
-    return ( <>
-        <h1>{sum}</h1>
-        <button onClick={handleClick}>click me</button>
-    </> );
+
+function Header() {
+  const [toggle, setToggle] = useState(true)
+  const x=3
+
+    useEffect (()=>{
+        console.log("gọi lại useeff")
+        const handleScroll = ()=>{
+            console.log(window.scrollY)
+        }
+        window.addEventListener('scroll',handleScroll)
+
+        return ()=> {
+            window.removeEventListener('scroll',handleScroll)
+        }
+    },[])
+    
+    // 1s
+    return ( 
+        <div style={{height: 3000}}>
+          <button onClick={()=> setToggle(!toggle)}>Render</button>
+
+        {toggle && <h1>Hello </h1>}
+        </div>
+     );
 }
 
 export default Header;
