@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 
-function Header() {
+function Lesson5() {
   const [toggle, setToggle] = useState(true)
   const x=3
 
@@ -28,4 +28,4 @@ function Header() {
      );
 }
 
-export default Header;
+export default Lesson5;

@@ -1,15 +1,24 @@
 import Game from "./Game";
-import Header from "./Header";
 import { useState } from "react";
+import Lesson5 from "./Lesson5";
+import Lesson6 from "./Lesson6";
 function App() {
-  const [toggle, setToggle] = useState(true)
+  const [toggle,setToggle] = useState(true)
   return (<>
-  <button onClick={()=> setToggle(!toggle)}>Mount</button>
-  {
-    toggle && <Header></Header>
-  }
+      {/* LESSON5
+      <button onClick={()=> setToggle(!toggle)}>Mount</button>
+      {
+      toggle && <Lesson5></Lesson5>
+      } */}
+      {/* <Game></Game> */}
+    
+     {/* LESSON6 */}
+     
+     {/* <button onClick={()=> setToggle(!toggle)}>Mount</button> */}
+     {toggle &&<Lesson6></Lesson6>}
     </>
-    // <Game></Game>
+
+
   );
 }
 
