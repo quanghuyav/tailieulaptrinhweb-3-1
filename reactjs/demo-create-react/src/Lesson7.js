@@ -41,13 +41,13 @@ function Lesson7() {
     //     console.log("hello")
     // }, [count1])
     const [count,setCount] = useState(0)
-    let x=0
-    useLayoutEffect(()=>{
-        console.log(x)
-    })
-    
+    useEffect(()=>{
+       setCount(1)
+    },[])
+    console.log("render")
     return ( <>   
-        <h1 onClick={()=>setCount(count+1)}>{x = 1}{console.log("hiện thị ra DOM")}</h1>
+        <h1 >{count}</h1>
+        <button onClick={()=>setCount(count+1)}>Increase</button>
  
     {/* <h1 onClick={()=>setCount1(count1+1)}> Lesson7 count 1: {count1}</h1>
     <h1 onClick={()=>setCount2(count2+1)}> Lesson7 count 2: {count2}</h1>

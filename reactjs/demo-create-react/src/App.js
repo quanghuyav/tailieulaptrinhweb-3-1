@@ -3,6 +3,8 @@ import { useState } from "react";
 import Lesson5 from "./Lesson5";
 import Lesson6 from "./Lesson6";
 import Lesson7 from "./Lesson7";
+import Lesson8 from "./Lesson8"
+import Shopping from "./Shopping";
 function App() {
   const [toggle,setToggle] = useState(true)
   return (<>
@@ -19,7 +21,9 @@ function App() {
      {/* {toggle &&<Lesson6></Lesson6>} */}
 
      {/* LESSon 7 */}
-     <Lesson7></Lesson7>
+     {/* <Lesson7></Lesson7> */}
+     {/* <Lesson8></Lesson8> */}
+     <Shopping></Shopping>
     </>
 
 
