@@ -1,0 +1,9 @@
+.header {
+    width: 500px;
+    height: 500px;
+    border: 1px solid #ccc;
+}
+.dark{
+    background-color: black;
+    color: white;
+}

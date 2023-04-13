@@ -1,0 +1,49 @@
+.button {
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.error {
+    border: 1px solid red;
+    color: red; 
+    font-weight: 500;
+    background-color: white;
+}
+.error:hover {
+    background-color: rgba(230, 207, 207, 0.624);
+}
+
+.success {
+    font-weight: 500;
+    color: white;
+    background-color: green;
+}
+.success:hover {
+    opacity: 0.8;
+}
+
+.primary {
+    border: 1px solid blue;
+    color: blue; 
+    font-weight: 500;
+    background-color: white;
+}
+.primary:hover {
+    background-color: rgba(233, 233, 254, 0.61);
+}
+
+.disabled {
+    background-color: #ccc;
+    color: rgba(92, 92, 92, 0.795);
+    border: none;
+    cursor: unset;
+}
+.disabled:hover {
+    background-color: #ccc;
+    opacity: unset;
+}

@@ -1,0 +1,21 @@
+
+:root {
+    $whiteColor : #ccc;
+
+.container {
+    
+    background-color: $whiteColor;
+
+    .content {
+        background-color: blue;
+    }
+}
+
+.container1 {
+    background-color: blue;
+
+    .content{
+        background-color: red;
+    }
+}
+}

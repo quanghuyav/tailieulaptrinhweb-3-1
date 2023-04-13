@@ -1,4 +1,5 @@
 import { useReducer, useState } from "react";
+import "./style.css"
 
 const initialState = {
     name:"",
