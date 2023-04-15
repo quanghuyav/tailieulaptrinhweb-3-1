@@ -5,13 +5,16 @@ import clsx from "clsx";
 function Header() {
     const [isDark, setIsDark] = useState(false)
 
-    const classes = clsx (styles.header)
+    const classes = clsx (styles.header,styles.title)
     console.log(styles)
 
     return ( <>
-        <h1 className={classes}>Header</h1>
+        <h1 className={classes}>Header</h1> 
         <button onClick={()=> setIsDark(!isDark)}>Click me</button>
     </> ); 
 }
-
+// 
 export default Header;
+
+
+
