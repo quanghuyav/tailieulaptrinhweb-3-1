@@ -7,10 +7,6 @@ import AppContext from "./AppContext.js";
 
 function App() {
   const [state,dispatch] = useReducer(AppReducer,itinialState)
-  useEffect(()=>{
-    dispatch(getCurrentUser({name:"huy"}))
-  },[])
-  console.log(state)
   
   return (
     <AppContext.Provider value={{state,dispatch}}>
