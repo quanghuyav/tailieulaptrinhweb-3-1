@@ -1,4 +1,10 @@
-import { CREATE_ONE_POST, GET_CURRENT_USER, DELETE_ONE_POST, GET_ALL_POSTS, UPDATE_ONE_POST } from './constants.js';
+import {
+    CREATE_ONE_POST,
+    GET_CURRENT_USER,
+    DELETE_ONE_POST,
+    GET_ALL_POSTS,
+    UPDATE_ONE_POST,
+} from './constants.js';
 
 export const itinialState = {
     user: null,
@@ -18,7 +24,7 @@ export default function reducer(state, action) {
                 ...state,
                 posts: state.posts.map((post) => {
                     if (post._id === action.payload._id) {
-                        return action.payload;
+                        return { ...post, content: action.payload.content };
                     }
                     return post;
                 }),

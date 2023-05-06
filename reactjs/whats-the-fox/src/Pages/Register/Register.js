@@ -2,12 +2,14 @@ import { useContext, useState } from 'react';
 import axios from 'axios';
 import AppContext from '../../context/context';
 import { getCurrentUser } from '../../reducer/actions';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
+    const navigate = useNavigate();
     const { dispatch } = useContext(AppContext);
 
     const handleRegister = async () => {
@@ -23,6 +25,7 @@ function Register() {
             .then((res) => {
                 dispatch(getCurrentUser(res.data.data));
                 localStorage.setItem('token', res.data.data.token);
+                navigate('/');
             })
             .catch(() => {
                 alert('Đăng ký thất bại');

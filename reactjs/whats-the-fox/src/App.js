@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { publicRoutes } from './routes/routes';
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { authRoutes, publicRoutes } from './routes/routes';
 import { useEffect, useReducer } from 'react';
 import reducer from './reducer/reducer';
 import { itinialState } from './reducer/reducer';
@@ -7,6 +7,7 @@ import AppContext from './context/context';
 import Header from './Components/Header/Header';
 import axios from 'axios';
 import { getCurrentUser } from './reducer/actions';
+import Home from './Pages/Home/Home';
 
 function App() {
     const [state, dispatch] = useReducer(reducer, itinialState);
@@ -37,6 +38,21 @@ function App() {
                                 <Header>
                                     <route.Component></route.Component>
                                 </Header>
+                            }
+                        ></Route>
+                    ))}
+                    {authRoutes.map((route, index) => (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                state.user ? (
+                                    <Navigate to="/" />
+                                ) : (
+                                    <Header>
+                                        <route.Component></route.Component>
+                                    </Header>
+                                )
                             }
                         ></Route>
                     ))}

@@ -25,28 +25,32 @@ function Header({ children }) {
                 >
                     Trang chủ
                 </Link>
-                <Link
-                    style={{
-                        backgroundColor: 'red',
-                        height: 50,
-                        display: 'inline-block',
-                        border: '1px solid #ccc',
-                    }}
-                    to="/login"
-                >
-                    Đăng nhập
-                </Link>
-                <Link
-                    style={{
-                        backgroundColor: 'red',
-                        height: 50,
-                        display: 'inline-block',
-                        border: '1px solid #ccc',
-                    }}
-                    to="/register"
-                >
-                    Đăng ký
-                </Link>
+                {!state.user && (
+                    <span>
+                        <Link
+                            style={{
+                                backgroundColor: 'red',
+                                height: 50,
+                                display: 'inline-block',
+                                border: '1px solid #ccc',
+                            }}
+                            to="/login"
+                        >
+                            Đăng nhập
+                        </Link>
+                        <Link
+                            style={{
+                                backgroundColor: 'red',
+                                height: 50,
+                                display: 'inline-block',
+                                border: '1px solid #ccc',
+                            }}
+                            to="/register"
+                        >
+                            Đăng ký
+                        </Link>
+                    </span>
+                )}
             </div>
             {state.user && (
                 <div>
