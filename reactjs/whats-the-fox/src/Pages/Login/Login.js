@@ -20,12 +20,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Alert, CircularProgress, Snackbar } from '@mui/material';
 
 function Login() {
     const { state, dispatch } = useContext(AppContext);
+    const [openAlert, setOpenAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
+        setLoading(true);
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
@@ -40,13 +44,28 @@ function Login() {
             .then((res) => {
                 dispatch(getCurrentUser(res.data.data));
                 localStorage.setItem('token', res.data.data.token);
+                setLoading(false);
                 navigate('/');
             })
-            .catch(() => alert('đăng nhập thất bại'));
+            .catch(() => {
+                setOpenAlert(true);
+                setLoading(false);
+            });
     };
 
     return (
         <Container component="main" maxWidth="xs">
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                sx={{ marginTop: '100px' }}
+                open={openAlert}
+                autoHideDuration={2000}
+                onClose={() => setOpenAlert(false)}
+            >
+                <Alert onClose={() => setOpenAlert(false)} severity="error" sx={{ width: '100%' }}>
+                    Đăng nhập thất bại
+                </Alert>
+            </Snackbar>
             <CssBaseline />
             <Box
                 sx={{
@@ -88,6 +107,12 @@ function Login() {
                         label="Remember me"
                     />
                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                        {loading && (
+                            <CircularProgress
+                                size={20}
+                                sx={{ marginRight: '10px', color: 'white' }}
+                            />
+                        )}
                         Sign In
                     </Button>
                     <Grid container>

@@ -1,12 +1,26 @@
-import { useContext, useMemo, useState } from 'react';
+import { memo, useContext, useMemo, useState } from 'react';
 import AppContext from '../../context/context';
 import axios from 'axios';
 import { deleteOnePost, updateOnePost } from '../../reducer/actions';
+import {
+    Avatar,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    TextField,
+    Typography,
+} from '@mui/material';
 
 function Post({ post }) {
     const { state, dispatch } = useContext(AppContext);
     const [openEditBox, setOpenEditBox] = useState(false);
     const [editContent, setEditContent] = useState('');
+    console.log('Bài post');
 
     const date = useMemo(() => {
         return new Date(post.createdAt);
@@ -51,31 +65,62 @@ function Post({ post }) {
     };
 
     return (
-        <div style={{ border: '1px solid red', margin: 20 }}>
-            <div>
-                <img style={{ width: '30px' }} src={post.author.avatar}></img>
-                {state.user && state.user.userName == post.author.email && (
-                    <>
-                        <button onClick={() => setOpenEditBox(!openEditBox)}>Sửa</button>
-                        <button onClick={handleDelete}>Xoá</button>
-                        {openEditBox && (
-                            <div>
-                                <input onChange={(e) => setEditContent(e.target.value)}></input>
-                                <button onClick={handleEdit}>OK</button>
-                            </div>
-                        )}
-                    </>
-                )}
-
-                <h3 style={{ margin: 0, padding: 0 }}>{post.author.name}</h3>
-                <div>
-                    {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()} {date.getHours()}:
-                    {date.getMinutes()}
-                </div>
-            </div>
-            <div>{post.content}</div>
-        </div>
+        <Card variant="outlined" sx={{ backgroundColor: '#f5f5f5' }}>
+            <CardContent>
+                <Avatar
+                    src={post.author.avatar}
+                    alt={post.author.name}
+                    sx={{
+                        width: 64,
+                        height: 64,
+                        marginBottom: '0.5rem',
+                        border: '2px solid #2196f3',
+                    }}
+                />
+                <Typography variant="h6" sx={{ marginBottom: '0.5rem' }}>
+                    {post.author.name}
+                </Typography>
+                <Typography
+                    variant="subtitle2"
+                    color="textSecondary"
+                    sx={{ marginBottom: '0.5rem' }}
+                >
+                    {post.createdAt}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                    {post.content}
+                </Typography>
+            </CardContent>
+            {state.user && state.user.userName == post.author.email && (
+                <CardActions sx={{ justifyContent: 'flex-end' }}>
+                    <Button size="small" color="primary" onClick={() => setOpenEditBox(true)}>
+                        Sửa
+                    </Button>
+                    <Button size="small" color="secondary" onClick={handleDelete}>
+                        Xoá
+                    </Button>
+                </CardActions>
+            )}
+            <Dialog open={openEditBox} onClose={() => setOpenEditBox(false)}>
+                <DialogTitle>Sửa nội dung</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        multiline
+                        rows={4}
+                        value={editContent}
+                        onChange={(e) => setEditContent(e.target.value)}
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenEditBox(false)}>Hủy</Button>
+                    <Button onClick={handleEdit} color="primary">
+                        Lưu
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </Card>
     );
 }
 
-export default Post;
+export default memo(Post);

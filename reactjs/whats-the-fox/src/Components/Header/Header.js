@@ -89,7 +89,7 @@ function Header({ children }) {
 
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -248,7 +248,7 @@ function Header({ children }) {
                     </Toolbar>
                 </Container>
             </AppBar>
-            {children}
+            <div style={{ marginTop: '100px' }}>{children}</div>
         </>
     );
 }

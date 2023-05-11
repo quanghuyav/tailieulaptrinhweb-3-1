@@ -20,14 +20,18 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Alert, CircularProgress, Snackbar } from '@mui/material';
 
 function Register() {
     const [password, setPassword] = useState();
+    const [openAlert, setOpenAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const { dispatch } = useContext(AppContext);
 
     const handleSubmit = async (event) => {
+        setLoading(true);
         event.preventDefault();
         const data = new FormData(event.currentTarget);
 
@@ -42,15 +46,28 @@ function Register() {
             .then((res) => {
                 dispatch(getCurrentUser(res.data.data));
                 localStorage.setItem('token', res.data.data.token);
+                setLoading(false);
                 navigate('/');
             })
             .catch(() => {
-                alert('Đăng ký thất bại');
+                setOpenAlert(true);
+                setLoading(false);
             });
     };
 
     return (
         <Container component="main" maxWidth="xs">
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                sx={{ marginTop: '100px' }}
+                open={openAlert}
+                autoHideDuration={2000}
+                onClose={() => setOpenAlert(false)}
+            >
+                <Alert onClose={() => setOpenAlert(false)} severity="error" sx={{ width: '100%' }}>
+                    Đăng ký thất bại
+                </Alert>
+            </Snackbar>
             <CssBaseline />
             <Box
                 sx={{
@@ -67,7 +84,7 @@ function Register() {
                     Sign up
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={1}>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 autoComplete="given-name"
@@ -118,6 +135,12 @@ function Register() {
                         </Grid>
                     </Grid>
                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                        {loading && (
+                            <CircularProgress
+                                size={20}
+                                sx={{ marginRight: '10px', color: 'white' }}
+                            />
+                        )}
                         Sign Up
                     </Button>
                     <Grid container justifyContent="flex-end">
